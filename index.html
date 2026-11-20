@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Test: Basic Microsoft Office 2024 (ACLS)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--c:#1D5FD6;--cl:#EAF1FF;--blue:#1D5FD6;--blue-d:#1749A8;--blue-l:#EAF1FF;--line:#D5E1F7;--ink:#14213D;--mute:#5B6B8C;--ok:#13875B;--okbg:#E6F6EF;--bad:#C93A3A;--badbg:#FDECEC;--bg:#F5F8FE;--w:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans Khmer","Khmer OS",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+header{background:linear-gradient(135deg,#1749A8 0%,#1D5FD6 100%);color:#fff;padding:32px 16px 68px;text-align:center}
+.cover-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:820px;margin:0 auto}
+.cover-avatar{width:118px;height:118px;border-radius:50%;object-fit:cover;object-position:top center;border:4px solid rgba(255,255,255,.9);box-shadow:0 8px 24px rgba(10,25,60,.28);background:#9aa3ad}
+header h1{margin:0;font-size:clamp(1.3rem,4vw,2rem);font-weight:700}
+header p{margin:4px 0 0;opacity:.92}
+main{max-width:820px;margin:-44px auto 40px;padding:0 14px}
+.card{background:var(--w);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 6px 20px rgba(29,95,214,.08)}
+.card h2{margin:0 0 14px;font-size:1.15rem;color:var(--blue-d)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid .full{grid-column:1/-1}
+label.t{display:block;font-weight:500;margin-bottom:4px}
+input[type=text],select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+input:focus,select:focus,button:focus-visible{outline:3px solid rgba(29,95,214,.3);border-color:var(--blue)}
+.radios{display:flex;gap:10px;flex-wrap:wrap}
+.radios label{display:flex;align-items:center;gap:8px;padding:9px 16px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
+.radios input:checked+span{font-weight:700;color:var(--blue)}
+.bar{position:sticky;top:0;z-index:5;background:var(--w);border-bottom:1px solid var(--line);padding:8px 14px;font-size:.9rem;color:var(--mute);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.prog{flex:1;height:8px;background:var(--blue-l);border-radius:8px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--blue);transition:width .25s}
+.s0{--c:#2B579A;--cl:#E6EDF8}.s1{--c:#1E7145;--cl:#E3F4EA}.s2{--c:#C43E1C;--cl:#FCEBE4}
+.sec{margin:6px 0 12px;padding:8px 14px;background:var(--cl);color:var(--c);border-left:6px solid var(--c);border-radius:10px;font-weight:700}
+.q{border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;padding:16px;margin-bottom:14px;background:#fff}
+.q.miss{border-color:var(--bad);background:var(--badbg)}
+.q h3{margin:0 0 10px;font-size:1rem;font-weight:500}
+.q h3 b{color:var(--c)}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;margin-top:8px;cursor:pointer}
+.opt:hover{background:var(--cl)}
+.opt input{margin-top:9px;accent-color:var(--c)}
+.opt.sel{border-color:var(--c);background:var(--cl)}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.locked .opt{cursor:default;pointer-events:none}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+button{font:inherit;font-weight:700;padding:12px 26px;border-radius:10px;border:2px solid var(--blue);cursor:pointer}
+.primary{background:var(--blue);color:#fff}.primary:hover{background:var(--blue-d)}
+.ghost{background:#fff;color:var(--blue)}.ghost:hover{background:var(--blue-l)}
+button:disabled{opacity:.6;cursor:not-allowed}
+#err{color:var(--bad);font-weight:500;margin:0 0 12px;display:none}
+#result{display:none}
+.score{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.ring{width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--blue) calc(var(--p)*1%),var(--blue-l) 0);display:grid;place-items:center}
+.ring div{width:100px;height:100px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;line-height:1.2}
+.ring strong{font-size:1.9rem;color:var(--blue)}
+.ring small{color:var(--mute)}
+.meta p{margin:2px 0}
+.badge{display:inline-block;padding:3px 14px;border-radius:20px;font-weight:700;color:#fff;background:var(--blue)}
+.badge.fail{background:var(--bad)}
+.subs{margin:16px 0;overflow-x:auto}
+.sum{width:100%;border-collapse:collapse;font-size:.95rem}
+.sum th{background:var(--blue);color:#fff;padding:8px 10px;text-align:left;font-weight:500}
+.sum td{padding:9px 10px;border-bottom:1px solid var(--line)}
+.sum tfoot td{background:var(--blue-l);font-weight:700;border-bottom:0}
+.mini{height:8px;background:var(--cl);border-radius:8px;overflow:hidden;min-width:70px}
+.sum tfoot .mini{background:#fff}
+.mini i{display:block;height:100%;background:var(--c)}
+.sum tbody td:first-child{color:var(--c);font-weight:700;border-left:6px solid var(--c)}
+.sum tbody td b{color:var(--c)}
+.sum small{color:var(--mute)}
+#save{margin-top:6px;padding:10px 14px;border-radius:10px;background:var(--blue-l);color:var(--blue-d);font-weight:500}
+#save.ok{background:var(--okbg);color:var(--ok)}#save.bad{background:var(--badbg);color:var(--bad)}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.btns button{flex:1}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="cover-wrap">
+    
+    <div>
+      <h1>Final Test: Basic Microsoft Office </h1>
+      <p>សាលាភាសាទ្វីបអាស៊ី (ACLS) • សំណួរ 50 • 2 ពិន្ទុក្នុងមួយសំណួរ • សរុប 100 ពិន្ទុ</p>
+      <p>BY TEACHER HAK CHHAYHONG </p>
+    </div>
+  </div>
+</header>
+<main>
+<form id="f" novalidate>
+  <section class="card">
+    <h2>ព័ត៌មានអ្នកសិក្សា</h2>
+    <div class="grid">
+      <div class="full"><label class="t" for="name">ឈ្មោះអ្នកសិក្សា</label><input id="name" type="text" placeholder="បញ្ចូលឈ្មោះពេញ" autocomplete="name"></div>
+      <div><label class="t">ភេទ</label>
+        <div class="radios">
+          <label><input type="radio" name="gender" value="ប្រុស"><span>ប្រុស</span></label>
+          <label><input type="radio" name="gender" value="ស្រី"><span>ស្រី</span></label>
+        </div></div>
+      <div><label class="t" for="shift">ម៉ោងសិក្សា (Shift Time)</label>
+        <select id="shift">
+          <option value="">-- ជ្រើសរើសម៉ោងសិក្សា --</option>
+          <option>8:00 – 9:00 AM</option>
+          <option>9:00 – 10:00 AM</option>
+          <option>10:00 – 11:00 AM</option>
+          <option>11:00 – 12:00 PM</option>
+          <option>12:00 – 1:00 PM</option>
+          <option>1:00 – 2:00 PM</option>
+          <option>2:00 – 3:00 PM</option>
+          <option>3:00 – 4:00 PM</option>
+          <option>4:00 – 5:00 PM</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <div class="bar"><span id="count">បានឆ្លើយ 0 / 50</span><div class="prog"><i id="pb"></i></div></div>
+  <div id="qs" style="margin-top:14px"></div>
+
+  <p id="err"></p>
+  <div class="btns">
+    <button type="submit" class="primary" id="submit">Submit</button>
+    <button type="button" class="ghost" id="reset">Reset</button>
+  </div>
+</form>
+
+<section class="card" id="result" style="margin-top:22px">
+  <h2>លទ្ធផល (Result)</h2>
+  <div class="score">
+    <div class="ring" id="ring"><div><span><strong id="sc">0</strong><br><small>/ 100</small></span></div></div>
+    <div class="meta">
+      <p id="rn"></p><p id="rg"></p><p id="rs"></p>
+      <p>ឆ្លើយត្រូវ <b id="rc"></b> / 50 • <span class="badge" id="grade"></span></p>
+    </div>
+  </div>
+  <div class="subs" id="subs"></div>
+  <div id="save">កំពុងរក្សាទុក...</div>
+  <div class="btns" style="margin-top:12px"><button type="button" class="primary" id="saveBtn" style="display:none">Save to Google Sheets</button></div>
+  <p style="color:var(--mute);margin-bottom:0">ចម្លើយត្រឹមត្រូវបង្ហាញជាពណ៌បៃតង ចម្លើយខុសរបស់អ្នកបង្ហាញជាពណ៌ក្រហម។</p>
+</section>
+</main>
+
+<script>
+// ===== CONFIG: ដាក់ URL នៃ Google Apps Script Web App របស់អ្នកនៅទីនេះ =====
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySCmgW3u2j0w0710FpUER_sZRc5cinJsrmi_X5lEdTZ4q7sat9Ah2EITLRCbZ3cWgo/exec";
+// ======================================================================
+
+const QUESTIONS = [
+  // ===== ផ្នែកទី 1: Microsoft Word (17 សំណួរ ពីមេរៀនទី 01 - 10) =====
+  {"s": 0, "q": "តើឯកសាររបស់កម្មវិធី Microsoft Word មានកន្ទុយឯកសារ (File Extension) អ្វី?", "o": [".xlsx", ".docx", ".pptx", ".txt"], "a": 1},
+  {"s": 0, "q": "ជា Default នៅពេលយើងរក្សាទុក (Save) ឯកសារថ្មីក្នុង Microsoft Word តើ System កុំព្យូទ័រនឹងដាក់ឯកសារចូលទៅក្នុង Folder ឈ្មោះអ្វី?", "o": ["Downloads", "Desktop", "Documents", "Pictures"], "a": 2},
+  {"s": 0, "q": "ដើម្បីសរសេរឯកសារឱ្យបានត្រឹមត្រូវតាមស្តង់ដា តើជាទូទៅគេប្រើប្រាស់ទំហំក្រដាស (Paper Size) ប្រភេទណា?", "o": ["A3", "A4", "A5", "Tabloid"], "a": 1},
+  {"s": 0, "q": "តើជម្រើស Margins ប្រភេទណាដែលប្រើសម្រាប់ឯកសារត្រូវការសន្សំចន្លោះក្រដាស ដើម្បីដាក់អក្សរឱ្យបានច្រើន (Save space)?", "o": ["Wide", "Mirrored", "Narrow", "Office 2003 Default"], "a": 2},
+  {"s": 0, "q": "ក្នុងមុខងារ Orientation នៃ Layout Tab តើពាក្យ «Landscape» មានន័យដូចម្តេច?", "o": ["ទំព័របង្ហាញបែបបញ្ឈរ", "ទំព័របង្ហាញបែបផ្តេក", "បែងចែកអត្ថបទជា ២ ជួរឈរ", "បំបែកទំព័រថ្មី"], "a": 1},
+  {"s": 0, "q": "ដើម្បីបែងចែកអត្ថបទឱ្យមានរចនាបថដូចសារព័ត៌មាន ឬបែងចែកសន្លឹកកិច្ចការជា ២ ជួរឈរ តើត្រូវប្រើមុខងារណាក្នុង Layout Tab?", "o": ["Margins", "Orientation", "Columns", "Hyphenation"], "a": 2},
+  {"s": 0, "q": "នៅក្នុង Section Breaks តើជម្រើសណាដែលប្រើសម្រាប់ចាប់ផ្តើមផ្នែកថ្មីនៅលើទំព័រថ្មី (ដូចជាពេលកំណត់លេខទំព័រចាប់ពីសន្លឹកទី ២)?", "o": ["Continuous", "Next Page", "Column Break", "Text Wrapping"], "a": 1},
+  {"s": 0, "q": "ក្នុងផ្នែក Font Toolbar តើ Tool ណាប្រើសម្រាប់ចម្លងរចនាបថ (Formatting) ពីអត្ថបទមួយទៅអត្ថបទផ្សេងទៀត?", "o": ["Clear Formatting", "Format Painter", "Change Case", "Strikethrough"], "a": 1},
+  {"s": 0, "q": "ករណីយើងបញ្ចូលរូបភាព (Picture) ក្នុង Word ហើយមិនអាចចាប់ទាញផ្លាស់ទីរូបភាពដោយសេរីបាន តើត្រូវចុចម៉ៅស្តាំរួចជ្រើសរើសមុខងារអ្វី?", "o": ["Insert Caption", "Crop to Shape", "Wrap Text", "View Alt Text"], "a": 2},
+  {"s": 0, "q": "ដើម្បីកាត់រូបភាពឱ្យទៅជារាងរង្វង់មូលក្នុងផ្ទាំង Picture Format តើត្រូវចុចលើ Crop រួចជ្រើសរើសពាក្យអ្វី?", "o": ["Aspect Ratio", "Crop to Shape", "Fit", "Fill"], "a": 1},
+  {"s": 0, "q": "នៅពេលប្រើ SmartArt ហើយចង់បន្ថែមប្រអប់រូបរាងថ្មីនៅផ្នែកខាងក្រោយ តើត្រូវចុចម៉ៅស្តាំលើ SmartArt រួចជ្រើសរើសពាក្យអ្វី?", "o": ["Add Shape > Add Shape After", "Change Shape", "Reset Shape", "Change Graphic"], "a": 0},
+  {"s": 0, "q": "ដើម្បីដាក់ស៊ុមទំព័រ (Page Borders) ឱ្យជាប់តែនៅលើទំព័រទីមួយប៉ុណ្ណោះ តើក្នុងប្រអប់ Apply to ត្រូវជ្រើសរើសយកពាក្យអ្វី?", "o": ["Whole document", "This section", "This section - First page only", "This section - All except first page"], "a": 2},
+  {"s": 0, "q": "ដើម្បីធ្វើឱ្យអក្សរ WordArt មានទម្រង់កោង ឬបត់បែន (Follow Path / Warp) តើត្រូវចូលទៅកាន់ Text Effects រួចជ្រើសរើសពាក្យអ្វី?", "o": ["Shadow", "Reflection", "Bevel", "Transform"], "a": 3},
+  {"s": 0, "q": "នៅពេលចង់បញ្ចូលនិមិត្តសញ្ញាប្រអប់ធីក (Checkbox) ឬរូបតំណាងផ្សេងៗតាម Symbol តើជាទូទៅគេប្តូរ Font ទៅជាអ្វី?", "o": ["Khmer OS Moul Light", "Wingdings", "Aptos", "Times New Roman"], "a": 1},
+  {"s": 0, "q": "ក្នុងផ្ទាំង Table Layout តើពាក្យបញ្ជា «Merge Cells» ប្រើសម្រាប់ធ្វើអ្វី?", "o": ["បំបែក Cell មួយឱ្យទៅជាច្រើន", "បញ្ចូល Cell ច្រើនឱ្យក្លាយជា Cell តែមួយ", "លុបបន្ទាត់ក្នុងតារាង", "បញ្ចូលជួរឈរខាងស្តាំ"], "a": 1},
+  {"s": 0, "q": "មុននឹងចុច Update Table ដើម្បីបង្កើតតារាងមាតិកា (Table of Contents) ដោយស្វ័យប្រវត្តិ តើត្រូវកំណត់អ្វីលើចំណងជើងអត្ថបទជាមុនសិន?", "o": ["កំណត់ Page Border", "ជ្រើសរើស Style ជា Heading (Heading 1, Heading 2...)", "ដាក់លេខសម្ងាត់", "ប្តូរក្រដាសទៅជា Landscape"], "a": 1},
+  {"s": 0, "q": "ដើម្បីដាក់លេខសម្ងាត់ការពារឯកសារ Word កុំឱ្យអ្នកដទៃបើកមើលបាន តើត្រូវចូលទៅ File > Info > Protect Document រួចជ្រើសរើសពាក្យអ្វី?", "o": ["Mark as Final", "Always Open Read-Only", "Encrypt with Password", "Add a Digital Signature"], "a": 2},
+
+  // ===== ផ្នែកទី 2: Microsoft Excel (17 សំណួរ ពីមេរៀនទី 01 - 09) =====
+  {"s": 1, "q": "ក្នុងមេរៀនប្រមាណវិធីក្នុង Microsoft Excel តើនិមិត្តសញ្ញា «^» ប្រើសម្រាប់គណនាអ្វី?", "o": ["គុណ", "ចែក", "ស្វ័យគុណ", "ភាគរយ"], "a": 2},
+  {"s": 1, "q": "នៅក្នុង Syntax នៃរូបមន្ត Excel តើ Parameters ដែលស្ថិតនៅក្នុងសញ្ញាដង្កៀប [ ] មានន័យដូចម្តេច?", "o": ["ដាច់ខាតត្រូវតែបញ្ចូល", "ជាជម្រើសបន្ថែម (Optional) អាចមិនបញ្ចូលក៏បាន", "ជាតម្លៃខុស (Error)", "ជាការចាក់សោរ Cell"], "a": 1},
+  {"s": 1, "q": "ដើម្បីបង្ហាញពាក្យ \"Kg\" នៅខាងក្រោយលេខក្នុង Excel ដោយអាចយកលេខនោះទៅគណនាបានធម្មតា តើត្រូវសរសេរកូដអ្វីក្នុង Format Cells > Custom?", "o": ["0 \"Kg\"", "#Kg#", "Kg-000", "TEXT(0,\"Kg\")"], "a": 0},
+  {"s": 1, "q": "ដើម្បីបង្កើតបញ្ជីជ្រើសរើស (Drop-down List) ដូចជា «ប្រុស,ស្រី» តើត្រូវចូលទៅ Tab Data > Data Validation រួចកំណត់ Allow ទៅជាពាក្យអ្វី?", "o": ["Whole number", "Text length", "List", "Custom"], "a": 2},
+  {"s": 1, "q": "តើមុខងារ Conditional Formatting ក្នុង Home Tab ប្រើសម្រាប់ធ្វើអ្វី?", "o": ["បង្កើតបញ្ជី Drop-down List", "បង្ហាញពណ៌ សញ្ញា ឬបន្ទាត់លើ Cell ដោយស្វ័យប្រវត្តិតាមលក្ខខណ្ឌ", "បម្លែងឯកសារទៅជា PDF", "គណនាចំណាត់ថ្នាក់សិស្ស"], "a": 1},
+  {"s": 1, "q": "តើអនុគមន៍ RANK.AVG ប្រើសម្រាប់ធ្វើអ្វីក្នុងតារាងពិន្ទុសិស្ស?", "o": ["គណនាពិន្ទុសរុប", "គណនាមធ្យមភាគ", "បង្ហាញចំណាត់ថ្នាក់ (Rank)", "រាប់ចំនួនសិស្សជាប់"], "a": 2},
+  {"s": 1, "q": "តើគ្រាប់ចុចផ្លូវកាត់ណាប្រើសម្រាប់ចាក់សោរ Cell (ដាក់សញ្ញា $ ជា Absolute Reference) ពេលកំពុងសរសេររូបមន្ត?", "o": ["F2", "F4 (ឬ Fn + F4)", "F5", "F7"], "a": 1},
+  {"s": 1, "q": "ក្នុងរូបមន្ត =WORKDAY.INTL(E3, 5, \"0000000\") តើកូដ \"0000000\" មានន័យដូចម្តេច?", "o": ["ឈប់សម្រាកថ្ងៃសៅរ៍ និងអាទិត្យ", "គ្មានថ្ងៃសម្រាកទេ គឺរាប់ថ្ងៃធ្វើការទាំង ៧ ថ្ងៃ (ច័ន្ទ ដល់ អាទិត្យ)", "បន្ថែម 7 ថ្ងៃទៀត", "បង្ហាញកំហុស #VALUE!"], "a": 1},
+  {"s": 1, "q": "តើអនុគមន៍ SWITCH និង IFS មានអត្ថប្រយោជន៍អ្វីសំខាន់?", "o": ["ប្រើសម្រាប់ជំនួសការសរសេររូបមន្ត IF ច្រើនជាន់ឱ្យងាយស្រួលអាន និងខ្លីជាងមុន", "ប្រើសម្រាប់បូកលេខឆ្លង Worksheet", "ប្រើសម្រាប់លុបទិន្នន័យស្ទួន", "ប្រើសម្រាប់បង្កើតតារាង PivotTable"], "a": 0},
+  {"s": 1, "q": "តើរូបមន្ត =COUNTIFS(D4:D11, \"Fantasy\", F4:F11, \">100\") ប្រើសម្រាប់ធ្វើអ្វី?", "o": ["បូកតម្លៃសៀវភៅប្រភេទ Fantasy", "រាប់ចំនួនជួរដែលមានប្រភេទជា Fantasy ផង និងមានចំនួនលក់លើស 100 ផង", "ស្វែងរកឈ្មោះសៀវភៅ Fantasy", "រកតម្លៃធំបំផុតនៃសៀវភៅ Fantasy"], "a": 1},
+  {"s": 1, "q": "តើភាពខុសគ្នាសំខាន់រវាងការប្រើ «Table» (Insert > Table) និង «Border» ធម្មតាក្នុង Excel គឺជាអ្វី?", "o": ["Border មាន Filter និង Sort ដោយស្វ័យប្រវត្តិ", "Table អាចប្រើ Structured Formula, Auto-expand ពេលបន្ថែមទិន្នន័យ និងមាន Filter/Sort ស្រាប់", "Table មិនអាចដាក់ពណ៌បានទេ", "Border ប្រើសម្រាប់គណនាឆ្លង Sheet ប៉ុណ្ណោះ"], "a": 1},
+  {"s": 1, "q": "ក្នុងរូបមន្ត XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found]) តើ Parameter ទី ៤ ([if_not_found]) ប្រើសម្រាប់អ្វី?", "o": ["ជួរដែលត្រូវបង្ហាញលទ្ធផល", "តម្លៃឬសារដែលត្រូវបង្ហាញ ប្រសិនបើរកមិនឃើញទិន្នន័យ", "ជួរដែលត្រូវស្វែងរក", "កំណត់ការផ្គូផ្គងប្រហែល"], "a": 1},
+  {"s": 1, "q": "ក្នុងរូបមន្ត =VLOOKUP(A2, stock, 2, FALSE) តើពាក្យ «FALSE» មានន័យដូចម្តេច?", "o": ["ស្វែងរកតម្លៃប្រហាក់ប្រហែល", "ស្វែងរកតម្លៃដែលត្រឹមត្រូវដូចគ្នាបេះបិទ (Exact Match)", "រាប់ពីស្តាំទៅឆ្វេង", "លាក់ជួរឈរទី ២"], "a": 1},
+  {"s": 1, "q": "តើរូបមន្ត =UNICHAR(8470) បង្ហាញនិមិត្តសញ្ញាអ្វីនៅក្នុង Excel?", "o": ["សញ្ញាដុល្លារ ($)", "និមិត្តសញ្ញាលេខរៀង (№)", "សញ្ញាធីក (✓)", "សញ្ញាភាគរយ (%)"], "a": 1},
+  {"s": 1, "q": "ដើម្បីគណនាអាយុជាឆ្នាំ (គិតពីថ្ងៃកំណើតដល់ថ្ងៃបច្ចុប្បន្ន) តើគេប្រើរូបមន្តអ្វី?", "o": ["=EDATE([@Birthday], NOW())", "=YEARFRAC([@Birthday], NOW())", "=EOMONTH([@Birthday], 0)", "=SEQUENCE(COUNTA([@Birthday]))"], "a": 1},
+  {"s": 1, "q": "តើរូបមន្ត =SEQUENCE(COUNTA(C31:C55)) ប្រើសម្រាប់ធ្វើអ្វី?", "o": ["រកថ្ងៃចុងក្រោយនៃខែ", "បង្កើតលេខរៀង (1, 2, 3...) ដោយស្វ័យប្រវត្តិតាមចំនួនទិន្នន័យដែលមាន", "បូកចំនួនក្រឡាទទេ", "ប្តូរអក្សរតូចទៅជាអក្សរធំ"], "a": 1},
+  {"s": 1, "q": "ក្នុងមេរៀនគណនាឆ្លង Worksheets តើរូបមន្ត ISNUMBER(SEARCH(...)) រួមជាមួយ FILTER ប្រើសម្រាប់ធ្វើអ្វី?", "o": ["គណនាប្រាក់ចំណេញសរុប", "ស្វែងរកពាក្យគន្លឹះក្នុងទិន្នន័យ (ទោះជាផ្នែកខ្លះនៃពាក្យ) ដើម្បីច្រោះបង្ហាញលទ្ធផល", "បម្លែងឯកសារ Excel ទៅជា PDF", "ចាក់សោរ Worksheet"], "a": 1},
+
+  // ===== ផ្នែកទី 3: Microsoft PowerPoint (16 សំណួរ ពីមេរៀនទី 01 - 04) =====
+  {"s": 2, "q": "តើឯកសារបទបង្ហាញរបស់កម្មវិធី Microsoft PowerPoint មានកន្ទុយឯកសារ (File Extension) អ្វី?", "o": [".docx", ".xlsx", ".pptx", ".pdf"], "a": 2},
+  {"s": 2, "q": "ដើម្បីបើកកម្មវិធី Microsoft PowerPoint តាម Start Menu តើត្រូវវាយពាក្យអ្វីក្នុងប្រអប់ Search?", "o": ["Word", "Excel", "PowerPoint", "Access"], "a": 2},
+  {"s": 2, "q": "នៅក្នុងមេរៀនទី ០២ នៃ PowerPoint តើ Tool ណាដែលសំខាន់បំផុតសម្រាប់សរសេរអត្ថបទនៅទីតាំងណាមួយលើស្លាយ?", "o": ["Text Box", "Crop", "Data Validation", "AutoSum"], "a": 0},
+  {"s": 2, "q": "ដើម្បីបញ្ចូល Text Box ថ្មីទៅលើស្លាយ PowerPoint តើត្រូវចូលទៅកាន់ Tab ណា?", "o": ["Insert", "Transitions", "Animations", "Slide Show"], "a": 0},
+  {"s": 2, "q": "តើផ្លូវកាត់ក្តារចុច (Shortcut) ណាប្រើសម្រាប់បន្ថែមស្លាយថ្មី (New Slide) យ៉ាងរហ័ស?", "o": ["Ctrl + N", "Ctrl + M", "Ctrl + S", "Ctrl + P"], "a": 1},
+  {"s": 2, "q": "តើ Tab «Transitions» ក្នុង PowerPoint ប្រើសម្រាប់កំណត់ចលនាទៅលើអ្វី?", "o": ["ចលនារបស់អក្សរ និងរូបភាពក្នុងស្លាយ", "ចលនាឥទ្ធិពលនៅពេលផ្លាស់ប្តូរពីស្លាយមួយទៅស្លាយមួយទៀត", "ការគណនារូបមន្តក្នុងតារាង", "ការកំណត់លេខសម្ងាត់"], "a": 1},
+  {"s": 2, "q": "តើ Tab «Animations» ក្នុង PowerPoint ប្រើសម្រាប់ធ្វើអ្វី?", "o": ["ប្តូរទំហំក្រដាស A4", "បន្ថែមចលនាទៅលើអក្សរ រូបភាព ឬ Shape នៅក្នុងស្លាយ", "បង្កើតតារាងមាតិកាស្វ័យប្រវត្តិ", "ត្រងទិន្នន័យ"], "a": 1},
+  {"s": 2, "q": "ដើម្បីធ្វើឱ្យចលនាផ្លាស់ប្តូរស្លាយមានភាពរលូន និងទាក់ទាញ (Smooth Animation) ដូចរូបភាពផ្លាស់ទីដោយស្វ័យប្រវត្តិ តើ Transition ណាដែលពេញនិយមប្រើជាងគេ?", "o": ["Morph", "None", "Cut", "Page Border"], "a": 0},
+  {"s": 2, "q": "ដើម្បីចាប់ផ្តើមបង្ហាញស្លាយ (Slide Show) ចាប់ពីស្លាយទី ១ ដំបូងគេ តើត្រូវចុចគ្រាប់ចុចណា?", "o": ["F2", "F4", "F5", "F7"], "a": 2},
+  {"s": 2, "q": "ប្រសិនបើអ្នកកំពុងស្ថិតនៅស្លាយទី ៥ ហើយចង់បង្ហាញស្លាយចាប់ពីស្លាយទី ៥ នោះភ្លាមៗ តើត្រូវចុចគ្រាប់ចុចអ្វី?", "o": ["F5", "Shift + F5", "Ctrl + F5", "Alt + F4"], "a": 1},
+  {"s": 2, "q": "ដើម្បីចាកចេញពីការបង្ហាញស្លាយ (End Slide Show) ត្រឡប់មកផ្ទាំងកែសម្រួលវិញ តើត្រូវចុចគ្រាប់ចុចណា?", "o": ["Enter", "Spacebar", "Esc", "Tab"], "a": 2},
+  {"s": 2, "q": "ដើម្បីផ្លាស់ប្តូរទម្រង់ប្លង់ (Layout) នៃស្លាយ ដូចជា Title Slide ឬ Title and Content តើពាក្យបញ្ជា Layout ស្ថិតនៅក្នុង Tab ណា?", "o": ["Home", "Transitions", "Animations", "Review"], "a": 0},
+  {"s": 2, "q": "ដើម្បីជ្រើសរើសម៉ូដរចនាបថស្លាយស្រាប់ៗ (Themes) និងកំណត់ពណ៌ផ្ទៃខាងក្រោយស្លាយ តើត្រូវចូលទៅ Tab ណា?", "o": ["Design", "Mailings", "Formulas", "Data"], "a": 0},
+  {"s": 2, "q": "តើផ្លូវកាត់ក្តារចុចណាប្រើសម្រាប់ចម្លងស្លាយ (Duplicate Slide) ដែលបានជ្រើសរើស?", "o": ["Ctrl + D", "Ctrl + M", "Ctrl + K", "Ctrl + Z"], "a": 0},
+  {"s": 2, "q": "ដើម្បីមើលស្លាយទាំងអស់តម្រៀបជារូបតូចៗនៅលើអេក្រង់តែមួយ សម្រាប់ងាយស្រួលអូសផ្លាស់ប្តូរលំដាប់ស្លាយ តើត្រូវប្រើ View ណា?", "o": ["Normal", "Slide Sorter", "Notes Page", "Reading View"], "a": 1},
+  {"s": 2, "q": "ដើម្បីរក្សាទុកបទបង្ហាញ PowerPoint ទៅជាឯកសារ PDF តើត្រូវចូលទៅ File > Save As រួចជ្រើសរើស Save as type ជាអ្វី?", "o": ["PowerPoint Presentation (*.pptx)", "PDF (*.pdf)", "Excel Workbook (*.xlsx)", "Word Document (*.docx)"], "a": 1}
+];
+
+const SUBJECTS = ["Microsoft Word","Microsoft Excel","Microsoft PowerPoint"];
+const L = ["A","B","C","D"], PER = 2;
+const $ = id => document.getElementById(id);
+let locked = false, saved = false, payload = null;
+
+function render(){
+  let h = "";
+  QUESTIONS.forEach((q,i)=>{
+    if(i===0||q.s!==QUESTIONS[i-1].s) h += `<div class="sec s${q.s}">ផ្នែក ${q.s+1}: ${SUBJECTS[q.s]}</div>`;
+    h += `<div class="q s${q.s}" id="q${i}"><h3><b>${i+1}.</b> ${q.q} <small style="color:var(--mute)">(2 ពិន្ទុ)</small></h3>`;
+    q.o.forEach((t,j)=>{
+      h += `<label class="opt" id="o${i}_${j}"><input type="radio" name="q${i}" value="${j}"><span><b>${L[j]}.</b> ${t}</span></label>`;
+    });
+    h += `</div>`;
+  });
+  $("qs").innerHTML = h;
+}
+function answered(){ return QUESTIONS.filter((_,i)=>document.querySelector(`input[name=q${i}]:checked`)).length; }
+function progress(){
+  const n = answered();
+  $("count").textContent = `បានឆ្លើយ ${n} / 50`;
+  $("pb").style.width = (n/50*100)+"%";
+}
+$("qs").addEventListener("change",e=>{
+  if(locked) return;
+  const m = e.target.name.match(/q(\d+)/); if(!m) return;
+  const i = +m[1];
+  QUESTIONS[i].o.forEach((_,j)=>$(`o${i}_${j}`).classList.toggle("sel", j===+e.target.value));
+  $("q"+i).classList.remove("miss");
+  progress();
+});
+
+function showErr(msg){ const e=$("err"); e.textContent=msg; e.style.display="block"; }
+
+$("f").addEventListener("submit",e=>{
+  e.preventDefault();
+  if(locked) return;
+  $("err").style.display="none";
+  const name = $("name").value.trim();
+  const gender = (document.querySelector("input[name=gender]:checked")||{}).value;
+  const shift = $("shift").value;
+  if(!name || !gender || !shift){ showErr("សូមបំពេញ ឈ្មោះ ភេទ និងម៉ោងសិក្សា ឱ្យគ្រប់។"); $("name").focus(); window.scrollTo({top:0,behavior:"smooth"}); return; }
+  const miss = [];
+  QUESTIONS.forEach((_,i)=>{ if(!document.querySelector(`input[name=q${i}]:checked`)){ miss.push(i); $("q"+i).classList.add("miss"); } });
+  if(miss.length){ showErr(`សូមឆ្លើយសំណួរឱ្យគ្រប់ (នៅខ្វះ: ${miss.map(x=>x+1).join(", ")})`); $("q"+miss[0]).scrollIntoView({behavior:"smooth",block:"center"}); return; }
+  grade(name,gender,shift);
+});
+
+function gradeOf(s){
+  if(s>=90) return ["A (ល្អប្រសើរ)",false];
+  if(s>=80) return ["B (ល្អណាស់)",false];
+  if(s>=70) return ["C (ល្អ)",false];
+  if(s>=60) return ["D (ល្អបង្គួរ)",false];
+  if(s>=50) return ["E (មធ្យម)",false];
+  return ["F (ធ្លាក់)",true];
+}
+
+function grade(name,gender,shift){
+  const MAXS=[0,0,0]; QUESTIONS.forEach(q=>MAXS[q.s]+=PER);
+  let correct = 0; const by=[0,0,0], ans=[];
+  QUESTIONS.forEach((q,i)=>{
+    const v = +document.querySelector(`input[name=q${i}]:checked`).value;
+    ans.push(L[v]);
+    if(v===q.a){ correct++; by[q.s]++; }
+    q.o.forEach((_,j)=>{
+      const el=$(`o${i}_${j}`); el.classList.remove("sel");
+      if(j===q.a) el.classList.add("right"); else if(j===v) el.classList.add("wrong");
+    });
+  });
+  locked = true;
+  const score = correct*PER, [g,fail] = gradeOf(score);
+  $("qs").classList.add("locked");
+  $("submit").disabled = true;
+  $("sc").textContent = score;
+  $("ring").style.setProperty("--p", score);
+  $("rn").innerHTML = `ឈ្មោះ: <b>${name}</b>`;
+  $("rg").innerHTML = `ភេទ: <b>${gender}</b>`;
+  $("rs").innerHTML = `ម៉ោងសិក្សា: <b>${shift}</b>`;
+  $("rc").textContent = correct;
+  const b=$("grade"); b.textContent=g; b.classList.toggle("fail",fail);
+  const CNT=[0,0,0]; QUESTIONS.forEach(q=>CNT[q.s]++);
+  const row=(n,c,tc,sc,mx,k)=>{const p=Math.round(sc/mx*100);return `<tr class="${k===undefined?'':'s'+k}"><td>${n}</td><td>${c} / ${tc}</td><td><b>${sc} / ${mx}</b></td><td><div class="mini"><i style="width:${p}%"></i></div><small>${p}%</small></td></tr>`;};
+  $("subs").innerHTML = `<table class="sum"><thead><tr><th>មុខវិជ្ជា</th><th>ឆ្លើយត្រូវ</th><th>ពិន្ទុ</th><th>ភាគរយ</th></tr></thead><tbody>`
+    + SUBJECTS.map((s,i)=>row(s,by[i],CNT[i],by[i]*PER,MAXS[i],i)).join("")
+    + `</tbody><tfoot>${row("សរុប (Total)",correct,50,score,100)}</tfoot></table>`;
+  $("result").style.display="block";
+  $("result").scrollIntoView({behavior:"smooth"});
+  payload = {name,gender,shift,score,correct,word:by[0]*PER,excel:by[1]*PER,powerpoint:by[2]*PER,grade:g,answers:ans.join("")};
+  save();
+}
+
+async function save(){
+  const box=$("save"), btn=$("saveBtn");
+  btn.style.display="none"; box.className=""; box.textContent="កំពុងរក្សាទុកទៅ Google Sheets...";
+  if(saved) return;
+  if(SCRIPT_URL.indexOf("PASTE_")===0){ box.className="bad"; box.textContent="មិនទាន់កំណត់ SCRIPT_URL ទេ។ សូមដាក់ URL នៃ Apps Script ក្នុង index.html។"; return; }
+  try{
+    await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+    saved = true; box.className="ok"; box.textContent="✓ បានរក្សាទុកលទ្ធផលទៅ Google Sheets ដោយជោគជ័យ។";
+  }catch(err){
+    box.className="bad"; box.textContent="រក្សាទុកមិនបាន។ សូមពិនិត្យអ៊ីនធឺណិត រួចចុច Save ម្តងទៀត។";
+    btn.style.display="inline-block";
+  }
+}
+$("saveBtn").addEventListener("click",save);
+
+$("reset").addEventListener("click",()=>{
+  if(!locked && answered()>0 && !confirm("តើអ្នកចង់លុបចម្លើយទាំងអស់ និងចាប់ផ្តើមឡើងវិញមែនទេ?")) return;
+  $("f").reset(); locked=false; saved=false; payload=null;
+  $("err").style.display="none"; $("result").style.display="none";
+  $("submit").disabled=false;
+  render(); $("qs").classList.remove("locked"); progress();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+render(); progress();
+</script>
+</body>
+</html>
